@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>short</title>
+</head>
+
+<body>
+    <form action="create" method="post">
+        <div>
+            <input type="text" name="url">
+            <select name="time">
+                <option value="60">1m</option>
+                <option value="3600">1h</option>
+            </select>
+            <input type="checkbox" name="check">
+            <input type="submit">
+        </div>
+    </form>
+    {% for e in entries %}
+    <ul>
+        <p>
+            <a href="/g/{{ e[0].decode() }}">{{ e[0].decode() }}</a> -> {{ e[1].decode() }}
+        </p>
+    </ul>
+    {% endfor %}
+</body>
+
+</html>
