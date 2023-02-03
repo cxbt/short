@@ -14,13 +14,11 @@ app = Flask(__name__)
 app.secret_key = os.urandom(16)
 
 redis = redis.Redis(host="redis", port=6379)
-# redis = redis.Redis(host="localhost", port=6379)
 
 
 @app.route("/", methods=["GET"])
 def index():
     short = [(keys, redis.get(keys)) for keys in redis.keys("[A-Z2-7]" * 7)]
-    print(short)
     return render_template("index.html", entries=short)
 
 
@@ -80,7 +78,3 @@ def go(r):
 @app.route("/error", methods=["GET"])
 def error():
     return render_template("error.html", msg=session["messages"])
-
-
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port="5000")
