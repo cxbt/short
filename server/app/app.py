@@ -2,7 +2,7 @@ import os
 import redis
 import validators
 from base64 import b32encode
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import Flask, redirect, render_template, request, session, url_for
 
 from util import vt_url_malicious
@@ -49,7 +49,11 @@ def create_url():
             if redis.get(new_r) == None:
                 redis.setex(new_r, time, url)
                 redis.setex(
-                    new_r + "t", time, datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    new_r + "t",
+                    time,
+                    (datetime.now() + timedelta(seconds=time)).strftime(
+                        "%Y-%m-%d %H:%M:%S"
+                    ),
                 )
                 break
 
