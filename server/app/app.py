@@ -66,18 +66,10 @@ def create_url():
 
 @app.route("/g/<r>", methods=["GET"])
 def go(r):
-    more = True if r[-1] == "+" else False
-    r = r[:7] if more else r
-    url = redis.get(r)
+    url = redis.get(r[:7])
 
     if url:
-        if more:
-            time = redis.get(r + "t")
-            return render_template(
-                "more.html", entry=(request.url_root + "g/" + r, url, time)
-            )
-        else:
-            return redirect(url)
+        return redirect(url)
     else:
         session["messages"] = "no-data"
         return redirect(url_for("index"))
