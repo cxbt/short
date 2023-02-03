@@ -1,3 +1,9 @@
-# short.cxbt.kr
+# short
 
-Handmade URL shortener
+url shortener like bit.ly
+
+## Run
+
+```
+$ docker compose up -d
+```
