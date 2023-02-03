@@ -42,6 +42,11 @@
                 </select>
                 <button type="submit" class="btn btn-primary btn-lg px-4">Shorten</button>
             </form>
+            {% if error %}
+            <div class="alert alert-danger mx-3" role="alert">
+                {{ error }}
+            </div>
+            {% endif %}
             <ul class="list-group mx-3 mb-4">
                 {% for e in entries %}
                 <li class="list-group-item">
@@ -49,8 +54,9 @@
                         <span>{{ e[1].decode() }}</span>
                         <div>
                             <span class="align-middle">
-                                <a href="/g/{{ e[0].decode() }}" class="link" target="_blank">https://short.cxbt.kr/g/{{ e[0].decode()
-                                }}</a>
+                                <a href="/g/{{ e[0].decode() }}" class="link" target="_blank">https://short.cxbt.kr/g/{{
+                                    e[0].decode()
+                                    }}</a>
                             </span>
                             <button type="button" class="btn">
                                 <i class="bit bi-clipboard"></i>
