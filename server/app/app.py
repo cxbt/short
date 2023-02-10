@@ -7,11 +7,14 @@ from flask import Flask, redirect, render_template, request, session, url_for
 
 from util import vt_url_malicious
 
-TIMEOUT_MAX = 3600
+SERVER_URL = os.getenv("SERVER_URL") or "localhost"
+TIMEOUT_MAX = 86400
 
 
 app = Flask(__name__)
 app.secret_key = os.urandom(16)
+app.config["sitename"] = os.getenv("SITENAME") or "short"
+
 
 redis = redis.Redis(host="redis", port=6379)
 
@@ -19,7 +22,7 @@ redis = redis.Redis(host="redis", port=6379)
 @app.route("/", methods=["GET"])
 def index():
     _ = [
-        (keys, redis.get(keys), redis.get(keys + b"t"))
+        (f"{SERVER_URL}/{keys.decode()}", redis.get(keys).decode(), redis.get(keys + b"t").decode())
         for keys in redis.keys("[A-Z2-7]" * 7)
     ]
     return render_template("index.html", entries=_, error=session.get("error"))

@@ -30,7 +30,7 @@
 <body>
     <div class="d-flex align-items-center justify-content-center w-auto min-vh-100">
         <div class="w-50">
-            <h1 class="mb-5 text-center fw-bold display-5">short.cxbt.kr</h1>
+            <h1 class="mb-5 text-center fw-bold display-5">{{ config["sitename"] }}</h1>
             <form method="post" class="d-grid d-sm-flex gap-2 mx-3 mb-4">
                 <input required name="url" type="text" class="form-control">
                 <select required name="time" class="form-select" style="width: auto">
@@ -48,15 +48,15 @@
             </div>
             {% endif %}
             <ul class="list-group mx-3 mb-4">
-                {% for e in entries %}
+                {% for entry in entries %}
                 <li class="list-group-item">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>{{ e[1].decode() }}</span>
+                        <span>{{ entry[1] }}</span>
                         <div>
                             <span class="align-middle">
-                                <a href="{{ e[0].decode() }}" data-bs-toggle="popover" data-bs-trigger="hover"
-                                    data-bs-placement="top" data-bs-content="Valid until {{ e[2].decode() }}"
-                                    class="link" target="_blank">https://short.cxbt.kr/{{ e[0].decode() }}</a>
+                                <a href="//{{ entry[0] }}" data-bs-toggle="popover" data-bs-trigger="hover"
+                                    data-bs-placement="top" data-bs-content="Valid until {{ entry[2] }}"
+                                    class="link" target="_blank">{{ entry[0] }}</a>
                             </span>
                             <button type="button" class="btn">
                                 <i class="bit bi-clipboard"></i>
