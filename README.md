@@ -2,7 +2,7 @@
 
 URL shortener like bit.ly
 
-![image](https://user-images.githubusercontent.com/24769005/218042379-4495aea6-de07-4a22-8099-f095f9653d6e.png)
+![image](https://user-images.githubusercontent.com/24769005/218044226-895d6451-42eb-450d-8be4-d317e8241ddf.png)
 
 ## Run
 
