@@ -12,7 +12,7 @@ services:
   server:
     build: server
     environment:
-      - SITENAME=URL Shortner
+      - SITENAME=sh.cxbt.kr
       - SERVER_URL=sh.cxbt.kr
       - VT_APIKEY=
       - TZ=Asia/Seoul
