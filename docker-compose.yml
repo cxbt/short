@@ -5,7 +5,7 @@ services:
     volumes:
       - ./proxy/Caddyfile:/etc/caddy/Caddyfile
     ports:
-      - "57047:57047"
+      - "127.0.0.1:57047:57047"
     depends_on:
       - server
       - redis
@@ -14,7 +14,7 @@ services:
     environment:
       - SITENAME=URL Shortner
       - SERVER_URL=sh.cxbt.kr
-      - VT_APIKEY=3781b656df6a618bc05d9ec7b82895ce36cdffb462f8dc091341427ec473dcb6
+      - VT_APIKEY=
       - TZ=Asia/Seoul
     depends_on:
       - redis
