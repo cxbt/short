@@ -9,3 +9,7 @@ URL shortener like bit.ly
 ```shell
 $ docker compose up -d
 ```
+
+## License
+
+[MIT](LICENSE) © Jehwan Yun
