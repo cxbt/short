@@ -25,7 +25,7 @@ def index():
     return render_template("index.html", entries=_, error=session.get("error"))
 
 
-@app.route("/create", methods=["POST"])
+@app.route("/", methods=["POST"])
 def create_url():
     try:
         url = request.form.get("url")
@@ -64,12 +64,12 @@ def create_url():
         return redirect(url_for("index"))
 
 
-@app.route("/g/<r>", methods=["GET"])
+@app.route("/<r>", methods=["GET"])
 def go(r):
     url = redis.get(r[:7])
 
     if url:
         return redirect(url)
     else:
-        session["messages"] = "no-data"
+        session["error"] = "no-data"
         return redirect(url_for("index"))
