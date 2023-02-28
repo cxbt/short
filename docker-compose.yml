@@ -6,6 +6,7 @@ services:
       - ./proxy/Caddyfile:/etc/caddy/Caddyfile
     ports:
       - "127.0.0.1:57047:57047"
+    restart: always
     depends_on:
       - server
       - redis
@@ -16,7 +17,9 @@ services:
       - SERVER_URL=sh.cxbt.kr
       - VT_APIKEY=
       - TZ=Asia/Seoul
+    restart: always
     depends_on:
       - redis
   redis:
     image: "redis"
+    restart: always
