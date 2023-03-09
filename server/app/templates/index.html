@@ -51,17 +51,20 @@
                 {% for entry in entries %}
                 <li class="list-group-item">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>{{ entry[1] }}</span>
-                        <div>
-                            <span class="align-middle">
-                                <a href="//{{ entry[0] }}" data-bs-toggle="popover" data-bs-trigger="hover"
-                                    data-bs-placement="top" data-bs-content="Valid until {{ entry[2] }}"
-                                    class="link" target="_blank">{{ entry[0] }}</a>
+                        <span class="text-truncate align-middle">{{ entry[1] }}</span>
+                        <span>
+                            <span class="px-2 align-middle">
+                                <a id="u{{ loop.index }}" ref="//{{ entry[0] }}" data-bs-toggle="popover"
+                                    data-bs-trigger="hover" data-bs-placement="top"
+                                    data-bs-content="Valid until {{ entry[2] }}" class="link" target="_blank">{{
+                                    entry[0] }}</a>
                             </span>
-                            <button type="button" class="btn">
-                                <i class="bit bi-clipboard"></i>
-                            </button>
-                        </div>
+                            <span>
+                                <button type="button" class="btn" onclick="copy({{ loop.index }})">
+                                    <i class="bit bi-clipboard"></i>
+                                </button>
+                            </span>
+                        </span>
                     </div>
                 </li>
                 {% endfor %}
@@ -75,6 +78,11 @@
         <script>
             const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
             const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+            function copy(idx) {
+                var copyText = document.querySelector("#u" + idx);
+                navigator.clipboard.writeText(copyText.innerHTML);
+            }
         </script>
     </div>
 </body>
